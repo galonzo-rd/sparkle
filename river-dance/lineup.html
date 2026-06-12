@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lineup — Sparkle City River Dance 2026</title>
+<title>Lineup, Sparkle City River Dance 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Outfit:wght@300;400;500;600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-title="Lineup">
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="index.html">
-      <span class="top">Sparkle City</span>
-      <span class="bottom">River Dance</span>
+      <img class="nav-logo-img" src="img/icons/galonzo.svg" alt="Sparkle City River Dance">
     </a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -37,105 +36,33 @@
 <header class="page-head">
   <span class="eyebrow">Two nights on the river</span>
   <h1>The 2026 Lineup</h1>
-  <p>For the first time, River Dance runs two full nights — Nashville regulars alongside talent from across the country and beyond.</p>
+  <p>For the first time, River Dance runs two full nights. Nashville regulars alongside talent from across the country and beyond.</p>
 </header>
 
 <section class="section dark" style="padding-top:3.5rem">
   <div class="section-inner">
 
-    <!-- ===== SVG critter / nature motifs (reused via <use>) ===== -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <defs>
-        <g id="m-frog" fill="none" stroke="#D8EF5C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 70 Q18 44 50 44 Q82 44 82 70 Q82 82 50 82 Q18 82 18 70Z"/>
-          <circle cx="34" cy="34" r="13"/><circle cx="66" cy="34" r="13"/>
-          <circle cx="34" cy="34" r="3" fill="#D8EF5C"/><circle cx="66" cy="34" r="3" fill="#D8EF5C"/>
-          <path d="M40 70 Q50 78 60 70"/>
-        </g>
-        <g id="m-turtle" fill="none" stroke="#F4B9A8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M28 58 Q28 34 50 34 Q72 34 72 58 Q72 70 50 70 Q28 70 28 58Z"/>
-          <path d="M50 34 V70 M32 50 H68 M38 38 L40 66 M62 38 L60 66"/>
-          <circle cx="50" cy="24" r="7"/>
-          <path d="M30 66 L24 76 M70 66 L76 76 M40 70 L36 80 M60 70 L64 80"/>
-        </g>
-        <g id="m-butterfly" fill="none" stroke="#D4A93A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M50 30 V74"/>
-          <path d="M50 38 Q22 18 20 42 Q18 62 50 56"/>
-          <path d="M50 38 Q78 18 80 42 Q82 62 50 56"/>
-          <path d="M50 56 Q26 56 26 74 Q44 80 50 66"/>
-          <path d="M50 56 Q74 56 74 74 Q56 80 50 66"/>
-          <path d="M50 30 L44 20 M50 30 L56 20"/>
-        </g>
-        <g id="m-raccoon" fill="none" stroke="#F5EEDC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 46 Q22 24 50 24 Q78 24 78 46 Q78 78 50 78 Q22 78 22 46Z"/>
-          <path d="M26 30 L16 16 M74 30 L84 16"/>
-          <path d="M34 50 Q42 44 48 50 M52 50 Q58 44 66 50"/>
-          <circle cx="41" cy="50" r="2.5" fill="#F5EEDC"/><circle cx="59" cy="50" r="2.5" fill="#F5EEDC"/>
-          <path d="M44 64 Q50 70 56 64"/>
-        </g>
-        <g id="m-sparkle" fill="#D8EF5C"><path d="M50 12 L58 42 L88 50 L58 58 L50 88 L42 58 L12 50 L42 42Z"/></g>
-        <g id="m-tree" fill="none" stroke="#D8EF5C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M50 14 L34 42 H66 Z"/><path d="M50 30 L28 64 H72 Z"/><path d="M50 88 V62"/>
-        </g>
-        <g id="m-moon" fill="none" stroke="#D4A93A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M64 22 Q40 28 40 50 Q40 72 64 78 Q44 84 30 66 Q18 50 30 34 Q44 16 64 22Z"/>
-        </g>
-        <g id="m-water" fill="none" stroke="#9EC9E3" stroke-width="5" stroke-linecap="round">
-          <path d="M8 36 Q22 24 36 36 T64 36 T92 36"/>
-          <path d="M8 56 Q22 44 36 56 T64 56 T92 56"/>
-          <path d="M8 76 Q22 64 36 76 T64 76 T92 76"/>
-        </g>
-      </defs>
-    </svg>
-
     <div class="poster">
-      <svg class="poster-critter c1" viewBox="0 0 100 100"><use href="#m-frog"/></svg>
-      <svg class="poster-critter c2" viewBox="0 0 100 100"><use href="#m-butterfly"/></svg>
-      <svg class="poster-critter c3" viewBox="0 0 100 100"><use href="#m-tree"/></svg>
-      <svg class="poster-critter c4" viewBox="0 0 100 100"><use href="#m-raccoon"/></svg>
-      <svg class="poster-critter c5" viewBox="0 0 100 100"><use href="#m-turtle"/></svg>
-      <svg class="poster-critter c6" viewBox="0 0 100 100"><use href="#m-water"/></svg>
-      <svg class="poster-critter c7" viewBox="0 0 100 100"><use href="#m-moon"/></svg>
-      <svg class="poster-critter c8" viewBox="0 0 100 100"><use href="#m-sparkle"/></svg>
+      <img class="poster-critter c1" src="img/icons/frogturtlecanoe.svg" alt="" aria-hidden="true">
+      <img class="poster-critter c2" src="img/icons/butterfly.svg" alt="" aria-hidden="true">
+      <img class="poster-critter c4" src="img/icons/raccoon.svg" alt="" aria-hidden="true">
+      <img class="poster-critter c5" src="img/icons/tent.svg" alt="" aria-hidden="true">
+      <img class="poster-critter c6" src="img/icons/canoe.svg" alt="" aria-hidden="true">
+      <img class="poster-critter c7" src="img/icons/discoball.svg" alt="" aria-hidden="true">
 
       <div class="poster-inner">
-        <span class="poster-eyebrow">★ Headlining both nights ★</span>
-        <div class="poster-headliner">Sparkle City Disco</div>
-        <div class="poster-headliner-sub">All vinyl · all disco · your hosts as always</div>
+        <div class="poster-headliner">Sparkle City River Dance</div>
+        <span class="poster-eyebrow">Musical Lineup</span>
 
-        <hr class="poster-rule">
+        <img class="poster-wave" src="img/icons/waves.svg" alt="" aria-hidden="true">
 
-        <div class="poster-night">
-          <div class="poster-night-head">Friday · Aug 21 <span class="end">music till midnight</span></div>
-          <div class="poster-tier t1">
-            <span>Sessy</span><span class="dot">·</span><span>Honey Simone</span>
-          </div>
-          <div class="poster-tier t2">
-            <span>J.Howard <span class="x">×</span> Jimmy Guaro</span><span class="dot">·</span><span>Spice J <span class="x">×</span> Notxander</span>
-          </div>
-          <div class="poster-tier t3">
-            <span>Ultrafrog</span>
-          </div>
-        </div>
-
-        <div class="poster-night">
-          <div class="poster-night-head">Saturday · Aug 22 <span class="end">music till 3am</span></div>
-          <div class="poster-tier t1">
-            <span>Lux Velour</span><span class="dot">·</span><span>Topo Bandido</span>
-          </div>
-          <div class="poster-tier t2">
-            <span>Maggie Wells <span class="x">×</span> Amy Darling</span><span class="dot">·</span><span>Zach Cowie</span>
-          </div>
-          <div class="poster-tier t3">
-            <span>Burika</span>
-          </div>
-        </div>
+        <div data-rd="lineup.poster"></div>
 
         <p class="poster-foot">Set times drop closer to the weekend · @sparklecityriverdance</p>
       </div>
     </div>
 
-    <p class="center note" style="margin-top:2.5rem">Artist links coming soon — follow along on <a href="https://instagram.com/sparklecityriverdance" target="_blank" rel="noopener" style="color:var(--lime)">@sparklecityriverdance</a> 🪩</p>
+    <p class="center note" style="margin-top:2.5rem">Artist links coming soon. Follow along on <a href="https://instagram.com/sparklecityriverdance" target="_blank" rel="noopener" style="color:var(--lime)">@sparklecityriverdance</a> 🪩</p>
   </div>
 </section>
 
@@ -176,5 +103,7 @@
   <div class="legal">© 2026 Sparkle City River Dance · Aug 21–23, 2026 · Bone's Kayak &amp; Campground, Hurricane Mills, TN</div>
 </footer>
 
+<script src="data/event.js"></script>
+<script src="js/render.js"></script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 /* ============================================================
-   SPARKLE CITY RIVER DANCE — 2026 Site
+   SPARKLE CITY RIVER DANCE, 2026 Site
    Per SCRD Brand Guidelines (Brand_Package/01_Brand_Guidelines)
    ============================================================ */
 
 /* Per Fletcher (June 7, 2026): ALWAYS use the italic Cooper. The 'Cooper Black'
-   family name intentionally loads the Italic TTF so every reference — CSS vars
-   and inline SVG font-family attrs — renders italic. */
+   family name intentionally loads the Italic TTF so every reference (CSS vars
+   and inline SVG font-family attrs) renders italic. */
 @font-face {
   font-family: 'Cooper Black';
   src: url('../fonts/CooperBlackItalic.ttf') format('truetype');
@@ -75,6 +75,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
   gap: 1rem;
 }
 .nav-logo { text-decoration: none; display: inline-block; line-height: 1; }
+.nav-logo-img { display: block; height: 54px; width: auto; }
+@media (max-width: 640px) { .nav-logo-img { height: 44px; } }
 .nav-logo .top {
   font-family: var(--eyebrow); color: var(--lime);
   letter-spacing: 0.34em; font-size: 0.72rem; text-transform: uppercase; display: block;
@@ -153,9 +155,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 }
 .hero-content {
   position: relative; max-width: 1100px; margin: 0 auto;
-  padding: 6rem 1.5rem 5.5rem; text-align: center;
+  padding: 4rem 1.5rem 4.25rem; text-align: center;
 }
-.hero .eyebrow { color: var(--lime); display: block; margin-bottom: 1.2rem; }
+.hero .eyebrow { color: var(--lime); display: block; margin-bottom: 0.9rem; }
 .hero-lockup-top {
   font-family: var(--eyebrow); letter-spacing: 0.5em; text-transform: uppercase;
   color: var(--cream); font-size: clamp(1rem, 2.5vw, 1.5rem); display: block; margin-bottom: 0.4rem;
@@ -164,6 +166,11 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
   font-size: clamp(3.2rem, 9vw, 6.5rem);
   color: var(--blush);
   text-transform: uppercase;
+}
+.hero-logo-wrap { margin: 0; line-height: 0; }
+.hero-logo {
+  display: block; margin: 0 auto;
+  width: clamp(340px, 84vw, 820px); height: auto;
 }
 .hero .dates {
   font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.2em;
@@ -185,6 +192,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 }
 .card h3 { font-size: 1.35rem; margin: 0.8rem 0 0.5rem; }
 .card .icon { height: 64px; }
+.card img.icon { height: 92px; width: auto; display: block; margin: 0 auto 0.2rem; }
 .section.dark .card { background: var(--forest-deep); border-color: var(--ink); color: var(--cream); }
 .section.dark .card h3 { color: var(--blush); }
 .card .cta {
@@ -213,6 +221,10 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 .gi-card .gi-emoji {
   position: absolute; top: 0.7rem; right: 0.9rem;
   font-size: 2.4rem; line-height: 1; opacity: 0.9;
+}
+.gi-card .gi-icon {
+  position: absolute; top: 0.6rem; right: 0.8rem;
+  width: 60px; height: 60px; object-fit: contain;
 }
 .gi-card h3 { font-size: 1.5rem; color: var(--forest); margin: 0 0 0.6rem; }
 .gi-card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--forest); }
@@ -278,14 +290,25 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
   text-transform: uppercase; margin: 0.2rem 0 0.4rem;
   text-shadow: 4px 4px 0 var(--forest-deep);
 }
-.poster-headliner-sub {
-  font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.2em;
-  color: var(--cream); font-size: 0.95rem; opacity: 0.85;
+.poster-wave {
+  display: block; width: 78%; max-width: 540px; height: auto;
+  margin: clamp(1.4rem,3.5vw,2.2rem) auto clamp(0.6rem,2vw,1.2rem);
 }
-.poster-rule {
-  width: 70%; max-width: 520px; height: 3px; margin: clamp(1.6rem,4vw,2.6rem) auto;
-  background: repeating-linear-gradient(90deg, var(--lime) 0 14px, transparent 14px 26px);
-  border: 0;
+/* Saturday closing-headliner marquee */
+.poster-headliner-slot {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1rem); flex-wrap: nowrap; margin: 0.6rem 0 0.3rem;
+}
+.poster-marquee {
+  font-family: var(--display); text-transform: uppercase; color: var(--blush);
+  font-size: clamp(2.1rem, 6.4vw, 4rem); line-height: 0.95;
+  text-shadow: 4px 4px 0 var(--forest-deep);
+}
+.poster-mq-ball { width: clamp(32px, 6vw, 56px); height: auto; flex: 0 0 auto; }
+.poster-marquee-tag {
+  font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--lime); font-size: clamp(0.78rem, 1.8vw, 1rem);
+  opacity: 0.9; margin-bottom: 1.1rem;
 }
 .poster-night { margin: clamp(1.4rem, 3.5vw, 2.4rem) 0; }
 .poster-night-head {
@@ -317,13 +340,13 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 }
 /* floating critters / nature motifs */
 .poster-critter { position: absolute; z-index: 1; pointer-events: none; opacity: 0.9; }
-.poster-critter.c1 { top: 4%; left: 4%; width: 64px; transform: rotate(-12deg); }
-.poster-critter.c2 { top: 7%; right: 5%; width: 58px; transform: rotate(10deg); }
-.poster-critter.c3 { top: 38%; left: 3%; width: 54px; }
-.poster-critter.c4 { top: 46%; right: 3.5%; width: 60px; transform: rotate(8deg); }
-.poster-critter.c5 { bottom: 16%; left: 6%; width: 56px; transform: rotate(6deg); }
-.poster-critter.c6 { bottom: 9%; right: 6%; width: 66px; transform: rotate(-8deg); }
-.poster-critter.c7 { top: 2%; left: 48%; width: 40px; transform: translateX(-50%); }
+.poster-critter.c1 { top: 3%; left: 2.5%; width: 86px; transform: rotate(-10deg); }
+.poster-critter.c2 { top: 6%; right: 3%; width: 78px; transform: rotate(8deg); }
+.poster-critter.c3 { top: 38%; left: 2%; width: 72px; }
+.poster-critter.c4 { top: 45%; right: 2%; width: 80px; transform: rotate(6deg); }
+.poster-critter.c5 { bottom: 14%; left: 3.5%; width: 80px; transform: rotate(6deg); }
+.poster-critter.c6 { bottom: 7%; right: 3.5%; width: 90px; transform: rotate(-8deg); }
+.poster-critter.c7 { top: 1.5%; left: 48%; width: 62px; transform: translateX(-50%); }
 .poster-critter.c8 { bottom: 3%; left: 30%; width: 46px; }
 @media (max-width: 640px) {
   .poster-critter.c3, .poster-critter.c4, .poster-critter.c8 { display: none; }
@@ -362,6 +385,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 }
 .year-chip.hiatus { opacity: 0.45; font-size: 0.95rem; }
 .year-chip.now { background: var(--lime); color: var(--ink); transform: rotate(-2deg); }
+a.year-chip { text-decoration: none; display: inline-block; transition: transform 0.15s ease, box-shadow 0.15s ease; cursor: pointer; }
+a.year-chip.now:hover { transform: rotate(-2deg) scale(1.06); box-shadow: 3px 3px 0 var(--ink); }
 
 /* ---------- Bios ---------- */
 .bios { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2.5rem; }

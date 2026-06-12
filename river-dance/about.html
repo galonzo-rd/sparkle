@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About — Sparkle City River Dance</title>
+<title>About, Sparkle City River Dance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Outfit:wght@300;400;500;600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-title="About">
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="index.html">
-      <span class="top">Sparkle City</span>
-      <span class="bottom">River Dance</span>
+      <img class="nav-logo-img" src="img/icons/galonzo.svg" alt="Sparkle City River Dance">
     </a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -37,7 +36,7 @@
 <header class="page-head">
   <span class="eyebrow">Since 2016</span>
   <h1>About</h1>
-  <p>Sparkle City River Dance is a kayak-in, kayak-out camping dance party on the Buffalo River — ten years of floating by day and dancing after dark. <span class="script" style="color:var(--lime)">Super Nature.</span></p>
+  <p>Sparkle City River Dance is a kayak-in, kayak-out camping dance party on the Buffalo River. Ten years of floating by day and dancing after dark. <span class="script" style="color:var(--lime)">Super Nature.</span></p>
 </header>
 
 <section class="section light">
@@ -49,7 +48,7 @@
       <img src="img/david-jonas-discohead.jpg" alt="Jonas Stein and David Bermudez with disco ball headpiece">
     </div>
     <div class="duo-intro">
-      <p>That's Jonas Stein and David Bermudez — the two halves of Sparkle City Disco and the founders of River Dance.</p>
+      <p>That's Jonas Stein and David Bermudez, the two halves of Sparkle City Disco and the founders of River Dance.</p>
     </div>
     <div class="bios duo-bios">
       <div class="bio">
@@ -87,15 +86,7 @@
   <div class="section-inner center">
     <span class="eyebrow">The road to ten</span>
     <h2>2016 → 2026</h2>
-    <div class="years">
-      <span class="year-chip">2016</span>
-      <span class="year-chip">2017</span>
-      <span class="year-chip">2018</span>
-      <span class="year-chip">2019</span>
-      <span class="year-chip hiatus">hiatus</span>
-      <span class="year-chip">2025</span>
-      <span class="year-chip now">2026 ✦ 10th</span>
-    </div>
+    <div class="years" data-rd="about.timeline"></div>
   </div>
 </section>
 
@@ -128,5 +119,7 @@
   <div class="legal">© 2026 Sparkle City River Dance · Aug 21–23, 2026 · Bone's Kayak &amp; Campground, Hurricane Mills, TN</div>
 </footer>
 
+<script src="data/event.js"></script>
+<script src="js/render.js"></script>
 </body>
 </html>

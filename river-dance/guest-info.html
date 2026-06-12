@@ -3,19 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guest Info — Sparkle City River Dance 2026</title>
+<title>Guest Info, Sparkle City River Dance 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600&family=Outfit:wght@300;400;500;600&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-title="Guest Info">
 
 <nav class="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="index.html">
-      <span class="top">Sparkle City</span>
-      <span class="bottom">River Dance</span>
+      <img class="nav-logo-img" src="img/icons/galonzo.svg" alt="Sparkle City River Dance">
     </a>
     <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -37,7 +36,7 @@
 <header class="page-head">
   <span class="eyebrow">Everything you need for the weekend</span>
   <h1>Guest Info</h1>
-  <p>Your home base during festival weekend — the grounds, the schedule, the rules, and how the whole kayak-in, kayak-out thing works.</p>
+  <p>Your home base during festival weekend. The grounds, the schedule, the rules, and how the whole kayak-in, kayak-out thing works.</p>
 </header>
 
 <!-- MAP -->
@@ -45,7 +44,7 @@
   <div class="section-inner">
     <span class="stamp">Artist's rendering · Official map coming soon</span>
     <h2>The Grounds</h2>
-    <p class="lead">Bone's Kayak &amp; Campground, Hurricane Mills, TN — camp, dance floor, and river all within a short wander.</p>
+    <p class="lead">Bone's Kayak &amp; Campground, Hurricane Mills, TN. Camp, dance floor, and river all within a short wander.</p>
     <div class="map-wrap">
       <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated map of the festival grounds">
         <!-- field -->
@@ -132,13 +131,6 @@
           <text x="0" y="44" font-family="Barlow Condensed, sans-serif" font-size="20" letter-spacing="2" fill="#F5EEDC" text-anchor="middle">FOOD + VENDORS</text>
         </g>
 
-        <!-- river brunch (left river bank) -->
-        <g transform="translate(540,420)">
-          <circle cx="0" cy="-12" r="17" fill="#F4B9A8" stroke="#0E0F0D" stroke-width="3"/>
-          <path d="M-8 -16 a8 8 0 0 1 16 0" fill="none" stroke="#0E0F0D" stroke-width="2.5"/>
-          <text x="0" y="20" font-family="Barlow Condensed, sans-serif" font-size="19" letter-spacing="2" fill="#F5EEDC" text-anchor="middle">RIVER BRUNCH ☕</text>
-        </g>
-
         <!-- butterflies -->
         <g transform="translate(180,150)">
           <path d="M0 0 C-10 -12 -22 -8 -16 2 C-22 12 -10 14 0 4 C10 14 22 12 16 2 C22 -8 10 -12 0 0 Z" fill="#D8EF5C" stroke="#0E0F0D" stroke-width="2"/>
@@ -176,34 +168,7 @@
   <div class="section-inner">
     <span class="stamp">Sample schedule · Final set times drop in August</span>
     <h2>The Weekend, Roughly</h2>
-    <div class="sched">
-      <div class="sched-day">
-        <h3>Friday · Aug 21</h3>
-        <table>
-          <tr><td class="time">3:00 PM</td><td>Gates open · check-in begins</td></tr>
-          <tr><td class="time">3–7 PM</td><td>Roll in, set up camp, find your people</td></tr>
-          <tr><td class="time">Sunset</td><td>First DJ sets of the weekend</td></tr>
-          <tr><td class="time">Late</td><td>Disco in the woods, night one 🪩</td></tr>
-        </table>
-      </div>
-      <div class="sched-day">
-        <h3>Saturday · Aug 22</h3>
-        <table>
-          <tr><td class="time">Morning</td><td>River brunch &amp; slow coffee</td></tr>
-          <tr><td class="time">9 AM–4 PM</td><td>Float window — kayaks &amp; canoes on the Buffalo</td></tr>
-          <tr><td class="time">Evening</td><td>Music kicks back up</td></tr>
-          <tr><td class="time">Late</td><td>Night two. The big one. ✦</td></tr>
-        </table>
-      </div>
-      <div class="sched-day">
-        <h3>Sunday · Aug 23</h3>
-        <table>
-          <tr><td class="time">Morning</td><td>Ease into it — coffee by the river</td></tr>
-          <tr><td class="time">By 2 PM</td><td>Pack out — leave it prettier than you found it</td></tr>
-          <tr><td class="time">After</td><td>Hugs, numbers exchanged, see you in 2027</td></tr>
-        </table>
-      </div>
-    </div>
+    <div class="sched" data-rd="schedule"></div>
   </div>
 </section>
 
@@ -216,7 +181,7 @@
     <div class="faq">
       <details>
         <summary>How does the kayak-in, kayak-out thing work?</summary>
-        <p>You can drive in like a normal person — but the spirit of the thing is the river. Kayak and canoe rentals run from <a href="https://www.bonescanoeandcampground.com" target="_blank" rel="noopener" style="color:var(--amber)">Bone's Kayak &amp; Campground</a>, with a dedicated float window on Saturday from 9am to 4pm. Details on rentals and shuttles coming soon.</p>
+        <p>You can drive in like a normal person. But the spirit of the thing is the river. Kayak and canoe rentals run from <a href="https://www.bonescanoeandcampground.com" target="_blank" rel="noopener" style="color:var(--amber)">Bone's Kayak &amp; Campground</a>, with a dedicated float window on Saturday from 9am to 4pm. Details on rentals and shuttles coming soon.</p>
       </details>
       <details>
         <summary>What should I bring?</summary>
@@ -224,11 +189,11 @@
       </details>
       <details>
         <summary>What's the deal with food and water?</summary>
-        <p>Food vendors will be on site all weekend, plus river brunch on Saturday and Sunday mornings. Potable water on the grounds. Vendor list coming soon.</p>
+        <p>Food vendors will be on site all weekend. Potable water on the grounds. Vendor list coming soon.</p>
       </details>
       <details>
         <summary>Can I bring my own drinks? Glass?</summary>
-        <p>Cans and plastic, yes. Glass, no — bare feet and dance floors don't mix with broken bottles. Full rules will be posted here.</p>
+        <p>Cans and plastic, yes. Glass, no. Bare feet and dance floors don't mix with broken bottles. Full rules will be posted here.</p>
       </details>
       <details>
         <summary>Is River Dance 21+?</summary>
@@ -236,7 +201,7 @@
       </details>
       <details>
         <summary>What about weather, cell service, and parking?</summary>
-        <p>It's a river valley in Tennessee in August — plan for heat, pop-up rain, and spotty service. Parking is on site. Specifics coming with the official guest guide.</p>
+        <p>It's a river valley in Tennessee in August. Plan for heat, pop-up rain, and spotty service. Parking is on site. Specifics coming with the official guest guide.</p>
       </details>
     </div>
     <p class="note">Got a question we haven't answered? <a href="mailto:sparklecityriverdance@gmail.com" style="color:var(--amber)">Email us</a> and we'll add it here.</p>
@@ -272,5 +237,7 @@
   <div class="legal">© 2026 Sparkle City River Dance · Aug 21–23, 2026 · Bone's Kayak &amp; Campground, Hurricane Mills, TN</div>
 </footer>
 
+<script src="data/event.js"></script>
+<script src="js/render.js"></script>
 </body>
 </html>

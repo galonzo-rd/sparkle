@@ -319,38 +319,55 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
   display: inline-block; color: var(--blush); font-size: 0.78em;
   letter-spacing: 0.12em; margin-left: 0.5rem; opacity: 0.9;
 }
-.poster-tier {
-  font-family: var(--display); text-transform: uppercase; line-height: 1.12;
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline;
-  gap: 0.2rem 1.1rem; max-width: 50rem; margin: 0.3rem auto;
+.poster-acts { max-width: 50rem; margin: 0 auto; }
+.poster-act {
+  font-family: var(--display); text-transform: uppercase; line-height: 1.18;
+  font-size: clamp(1.3rem, 3.6vw, 2.2rem); color: var(--cream);
+  margin: 0.32rem auto; text-align: center;
 }
-.poster-tier.t1 { font-size: clamp(1.7rem, 5.2vw, 3.1rem); color: var(--cream); }
-.poster-tier.t2 { font-size: clamp(1.3rem, 3.6vw, 2.1rem); color: var(--lime); }
-.poster-tier.t3 { font-size: clamp(1.05rem, 2.6vw, 1.5rem); color: var(--blush); }
-.poster-tier a { text-decoration: none; transition: color 0.15s, transform 0.15s; display: inline-block; }
-.poster-tier a:hover { color: var(--gold); transform: translateY(-2px); }
-.poster-tier .x {
-  font-family: var(--eyebrow); font-size: 0.5em; color: var(--blush);
-  letter-spacing: 0.1em; opacity: 0.85; vertical-align: middle;
+.poster-act.marquee { color: var(--blush); }
+.poster-act a { text-decoration: none; transition: color 0.15s, transform 0.15s; display: inline-block; }
+.poster-act a:hover { color: var(--gold); transform: translateY(-2px); }
+.poster-act .x {
+  font-family: var(--display); font-size: 0.92em; color: var(--gold);
+  margin: 0 0.18em; vertical-align: baseline;
 }
-.poster-tier .dot { color: rgba(245,238,220,0.35); font-family: var(--body); }
+.poster-act .loc {
+  font-family: var(--body); text-transform: none; font-size: 0.42em;
+  opacity: 0.7; letter-spacing: 0.02em; vertical-align: middle; margin-left: 0.25em;
+}
 .poster-foot {
   font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.16em;
   color: var(--cream); font-size: 0.85rem; opacity: 0.8; margin-top: 2rem;
 }
 /* floating critters / nature motifs */
-.poster-critter { position: absolute; z-index: 1; pointer-events: none; opacity: 0.9; }
-.poster-critter.c1 { top: 3%; left: 2.5%; width: 86px; transform: rotate(-10deg); }
-.poster-critter.c2 { top: 6%; right: 3%; width: 78px; transform: rotate(8deg); }
-.poster-critter.c3 { top: 38%; left: 2%; width: 72px; }
-.poster-critter.c4 { top: 45%; right: 2%; width: 80px; transform: rotate(6deg); }
-.poster-critter.c5 { bottom: 14%; left: 3.5%; width: 80px; transform: rotate(6deg); }
-.poster-critter.c6 { bottom: 7%; right: 3.5%; width: 90px; transform: rotate(-8deg); }
-.poster-critter.c7 { top: 1.5%; left: 48%; width: 62px; transform: translateX(-50%); }
-.poster-critter.c8 { bottom: 3%; left: 30%; width: 46px; }
+/* big disco ball sits BEHIND the headliner text (.poster-inner is z-index:2) */
+.poster-ball {
+  position: absolute; z-index: 1; pointer-events: none;
+  top: -2%; left: 50%; transform: translateX(-50%);
+  width: clamp(240px, 46%, 400px);
+}
+/* galonzo wordmark — signature in the bottom padding, below the foot text */
+.poster-mark {
+  position: absolute; z-index: 1; pointer-events: none; opacity: 1;
+  bottom: 1.2%; left: 50%; transform: translateX(-50%) rotate(-2deg);
+  width: clamp(170px, 32%, 250px);
+}
+/* scattered critters — fully opaque, clear of the text.
+   frog-and-turtle-in-the-canoe is the prominent one. */
+.poster-critter { position: absolute; z-index: 1; pointer-events: none; opacity: 1; }
+.poster-critter.k-frog    { top: 36%; left: 0.5%;  width: 112px; transform: rotate(-8deg); }
+.poster-critter.k-raccoon { top: 65%; left: 1%;    width: 88px; transform: rotate(-6deg); }
+.poster-critter.k-tent    { bottom: 4.5%; left: 2.5%;  width: 74px; transform: rotate(5deg); }
+.poster-critter.k-canoe   { bottom: 4.5%; right: 2.5%; width: 94px; transform: rotate(-7deg); }
+.poster-critter.k-b1 { top: 28%; right: 2.5%; width: 60px; transform: rotate(8deg); }
+.poster-critter.k-b2 { top: 53%; left: 8%;   width: 50px; transform: rotate(-10deg); }
+.poster-critter.k-b3 { top: 73%; right: 9%;  width: 54px; transform: rotate(12deg); }
 @media (max-width: 640px) {
-  .poster-critter.c3, .poster-critter.c4, .poster-critter.c8 { display: none; }
-  .poster-critter { opacity: 0.55; }
+  .poster-ball { width: clamp(180px, 60%, 260px); }
+  .poster-mark { width: clamp(130px, 44%, 180px); }
+  .poster-critter.k-frog { width: 72px; }
+  .poster-critter.k-raccoon, .poster-critter.k-b2, .poster-critter.k-b3 { display: none; }
 }
 
 /* ---------- Schedule ---------- */
@@ -396,15 +413,9 @@ a.year-chip.now:hover { transform: rotate(-2deg) scale(1.06); box-shadow: 3px 3p
 .duo-intro p { font-size: 1.15rem; }
 .duo-bios { margin-top: 1.75rem; max-width: 760px; margin-left: auto; margin-right: auto; }
 .duo-bios .bio h3 { margin-top: 0; }
-.bios.crew-solo { max-width: 380px; margin: 3.5rem auto 0; }
 .bio img { border: 2px solid var(--ink); border-radius: 6px; height: 320px; width: 100%; object-fit: cover; }
 .bio h3 { margin-top: 1rem; font-size: 1.4rem; }
 .bio .role { font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.16em; color: var(--amber); font-size: 0.9rem; }
-.bio.placeholder .ph-frame {
-  height: 320px; border: 2px dashed var(--ink); border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  background: repeating-linear-gradient(-45deg, rgba(43,74,46,0.06) 0 14px, transparent 14px 28px);
-}
 
 /* ---------- FAQ ---------- */
 .faq { margin-top: 2rem; max-width: 50rem; }

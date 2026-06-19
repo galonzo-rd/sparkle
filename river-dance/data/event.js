@@ -42,26 +42,33 @@ window.RD = {
   ],
 
   /* ---- LINEUP ----
-     Each night has tiers (rows on the poster), biggest names first.
-     A "collab" is just two names joined with  ×  — e.g. "Maggie Wells × Amy Darling".
-     "marquee" is the closing headliner slot (leave it out if a night has none). */
+     List each night's acts in CHRONOLOGICAL set order — first act first, closer last.
+     The poster displays them reversed (closer on top, opener at the bottom).
+     A duo is just two names joined with  ×  — e.g. "Maggie Wells × Amy Darling".
+     Add " (City)" after a name to show a small location beside it.
+     "headliner" = the act shown in pink (the only visual standout). */
   lineup: {
     nights: [
       {
         day: "Friday", date: "Aug 21", endNote: "music till midnight",
-        tiers: [
-          ["Sessy", "Honey Simone"],
-          ["J.Howard × Jimmy Guaro", "Spice J × Notxander"],
-          ["Ultrafrog"]
+        acts: [
+          "Sessy",
+          "Honey Simone",
+          "J.Howard × Jimmy Guaro",
+          "Spice J × Notxander",
+          "Ultrafrog"
         ]
       },
       {
         day: "Saturday", date: "Aug 22", endNote: "music till 3am",
-        marquee: { name: "Sparkle City Disco", tag: "Your hosts close out the night" },
-        tiers: [
-          ["Lux Velour", "Topo Bandido"],
-          ["Maggie Wells × Amy Darling", "Zach Cowie"],
-          ["Burika"]
+        headliner: "Sparkle City Disco",
+        acts: [
+          "Lux Velour",
+          "Topo Bandido",
+          "Maggie Wells × Amy Darling",
+          "Zach Cowie (Los Angeles)",
+          "Sparkle City Disco",
+          "Burika (Costa Rica)"
         ]
       }
     ]
@@ -83,7 +90,7 @@ window.RD = {
       day: "Saturday", date: "Aug 22",
       rows: [
         ["Morning",   "Slow coffee & easy mornings"],
-        ["9 AM–4 PM", "Float window, kayaks & canoes on the Buffalo"],
+        ["9 AM–12 PM", "Shuttle to the river drop-in (the float back takes 2–4 hrs)"],
         ["Evening",   "Music kicks back up"],
         ["Late",      "Night two. The big one. ✦"]
       ]
@@ -95,8 +102,7 @@ window.RD = {
     stats: [
       { num: "10th", label: "Anniversary Year" },
       { num: "300",  label: "River Dancers" },
-      { num: "50K",  label: "Social Media Impressions" },
-      { num: "$69K", label: "Avg. Household Income" }
+      { num: "50K",  label: "Social Media Impressions" }
     ],
     tiers: [
       {

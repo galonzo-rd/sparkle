@@ -9,7 +9,12 @@
 
   /* ---------- small helpers ---------- */
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function artist(name){ return esc(name).split(' × ').join(' <span class="x">×</span> '); }
+  function artist(name){
+    var loc = '';
+    name = name.replace(/\s*\(([^)]+)\)\s*$/, function(m, c){ loc = ' <span class="loc">(' + esc(c) + ')</span>'; return ''; });
+    return esc(name).split(' × ').join(' <span class="x">×</span> ') + loc;
+  }
+  function nameOnly(name){ return name.replace(/\s*\([^)]+\)\s*$/, ''); }
   var NUMWORD = {1:"One",2:"Two",3:"Three",4:"Four"};
 
   var datesVenueLine = E.datesDisplay + " · " + E.venue + " · " + E.river;
@@ -33,12 +38,11 @@
     "sponsors.stats":  function(el){ el.innerHTML = statsHTML(RD.sponsors.stats); },
 
     "lineup.teaser": function(el){
-      var names = [], marquees = [];
+      var names = [];
       RD.lineup.nights.forEach(function(n){
-        n.tiers.forEach(function(t){ t.forEach(function(a){ names.push(a); }); });
-        if (n.marquee) marquees.push(n.marquee.name);
+        n.acts.forEach(function(a){ names.push(nameOnly(a)); });
       });
-      el.innerHTML = names.concat(marquees).map(artist).join(' · ');
+      el.innerHTML = names.map(function(s){ return esc(s).split(' × ').join(' <span class="x">×</span> '); }).join(' · ');
     },
 
     "lineup.poster": function(el){
@@ -46,18 +50,13 @@
         var html = '<div class="poster-night">';
         html += '<div class="poster-night-head">'+esc(n.day)+' · '+esc(n.date)+
                 ' <span class="end">'+esc(n.endNote)+'</span></div>';
-        if (n.marquee){
-          html += '<div class="poster-headliner-slot">'+
-                    '<img class="poster-mq-ball" src="img/icons/discoball.svg" alt="" aria-hidden="true">'+
-                    '<span class="poster-marquee">'+esc(n.marquee.name)+'</span>'+
-                    '<img class="poster-mq-ball" src="img/icons/discoball.svg" alt="" aria-hidden="true">'+
-                  '</div>'+
-                  '<div class="poster-marquee-tag">'+esc(n.marquee.tag)+'</div>';
-        }
-        n.tiers.forEach(function(t, i){
-          var inner = t.map(function(a){ return '<span>'+artist(a)+'</span>'; }).join('<span class="dot">·</span>');
-          html += '<div class="poster-tier t'+(i+1)+'">'+inner+'</div>';
+        html += '<div class="poster-acts">';
+        // display closer on top: reverse the chronological list
+        n.acts.slice().reverse().forEach(function(a){
+          var isHead = n.headliner && nameOnly(a) === n.headliner;
+          html += '<div class="poster-act'+(isHead?' marquee':'')+'">'+artist(a)+'</div>';
         });
+        html += '</div>';
         return html + '</div>';
       }).join('');
     },

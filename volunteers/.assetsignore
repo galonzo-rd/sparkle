@@ -1,0 +1,3 @@
+# config files excluded from served assets
+wrangler.jsonc
+.assetsignore

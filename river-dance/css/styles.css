@@ -171,6 +171,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 .hero-logo {
   display: block; margin: 0 auto;
   width: clamp(340px, 84vw, 820px); height: auto;
+  aspect-ratio: 298.3 / 182.8; /* logo-tight.svg viewBox — reserves the box before the SVG loads, prevents layout shift (CLS) */
 }
 .hero .dates {
   font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.2em;

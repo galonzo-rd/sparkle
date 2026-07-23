@@ -491,3 +491,41 @@ a.year-chip.now:hover { transform: rotate(-2deg) scale(1.06); box-shadow: 3px 3p
 .bignum { font-family: var(--display); font-size: clamp(2.6rem, 6vw, 4rem); color: var(--lime); line-height: 1; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin-top: 2.5rem; text-align: center; }
 .stats .label { font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.9rem; margin-top: 0.4rem; }
+
+/* ---------- Gallery lightbox ---------- */
+.gallery-grid div { cursor: zoom-in; }
+.lb-overlay {
+  position: fixed; inset: 0; z-index: 1000; display: none;
+  background: rgba(14, 15, 13, 0.94);
+  flex-direction: column; align-items: center; justify-content: center;
+  padding: 2.5rem 1rem;
+}
+.lb-overlay img {
+  max-width: min(92vw, 1400px); max-height: 78vh; width: auto; height: auto;
+  border-radius: 6px; border: 2px solid var(--cream);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.55);
+  cursor: zoom-out;
+}
+.lb-caption {
+  font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--cream); font-size: 0.92rem; margin-top: 1rem;
+  text-align: center; opacity: 0.9; max-width: 90vw;
+}
+.lb-count {
+  font-family: var(--eyebrow); letter-spacing: 0.2em;
+  color: var(--lime); font-size: 0.8rem; margin-top: 0.35rem; opacity: 0.85;
+}
+.lb-btn {
+  position: fixed; top: 50%; transform: translateY(-50%); z-index: 1001;
+  background: none; border: 0; color: var(--cream);
+  font-size: 3.4rem; line-height: 1; cursor: pointer; padding: 1rem 1.1rem; opacity: 0.85;
+}
+.lb-btn:hover { color: var(--lime); opacity: 1; }
+.lb-prev { left: 0.4rem; }
+.lb-next { right: 0.4rem; }
+.lb-close { top: 0.6rem; right: 0.8rem; transform: none; font-size: 2.6rem; }
+body.lb-open { overflow: hidden; }
+@media (max-width: 640px) {
+  .lb-btn { font-size: 2.4rem; padding: 0.6rem; }
+  .lb-overlay img { max-height: 70vh; }
+}

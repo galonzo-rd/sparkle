@@ -4,7 +4,7 @@
   var grids = document.querySelectorAll('.gallery-grid');
   if (!grids.length) return;
 
-  var overlay = null, imgEl, capEl, countEl;
+  var overlay = null, imgEl, countEl;
   var items = [], idx = 0, touchX = null;
 
   function build() {
@@ -17,12 +17,10 @@
       '<button class="lb-btn lb-prev" aria-label="Previous photo">&#8249;</button>' +
       '<img alt="">' +
       '<button class="lb-btn lb-next" aria-label="Next photo">&#8250;</button>' +
-      '<div class="lb-caption"></div>' +
       '<div class="lb-count"></div>';
     document.body.appendChild(overlay);
 
     imgEl = overlay.querySelector('img');
-    capEl = overlay.querySelector('.lb-caption');
     countEl = overlay.querySelector('.lb-count');
 
     overlay.querySelector('.lb-close').addEventListener('click', close);
@@ -50,7 +48,6 @@
     idx = (i + items.length) % items.length;
     imgEl.src = items[idx].src;
     imgEl.alt = items[idx].alt || '';
-    capEl.textContent = items[idx].alt || '';
     countEl.textContent = (idx + 1) + ' / ' + items.length;
     // preload neighbors for snappy arrows
     [idx + 1, idx - 1].forEach(function (n) {

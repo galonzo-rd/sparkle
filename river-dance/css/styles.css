@@ -540,3 +540,35 @@ body.lb-open { overflow: hidden; }
 .artist-link:hover,
 .artist-link:focus-visible{ text-decoration: underline; text-underline-offset: .18em; }
 .poster-act .artist-link:hover{ text-decoration: none; }
+
+
+/* ---------- Footer: mail glyph + Admit One ticket ---------- */
+.foot-mail { display: inline-flex; align-items: center; line-height: 1; }
+.foot-mail svg { transition: transform 0.15s; }
+.foot-mail:hover svg { transform: translateY(-1px); }
+
+.footer li.foot-ticket-li { margin-top: 0.85rem; }
+.foot-ticket {
+  display: inline-block; position: relative;
+  background: var(--lime); color: var(--forest-deep) !important;
+  border-radius: 4px; padding: 3px;
+  transition: background 0.15s, transform 0.15s;
+}
+.foot-ticket span {
+  display: block;
+  border: 1px dashed rgba(31, 55, 34, 0.55);
+  border-radius: 2px;
+  padding: 0.34rem 0.85rem;
+  font-family: var(--eyebrow);
+  font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.18em; line-height: 1;
+}
+/* punched notches — sit on the footer's solid background */
+.foot-ticket::before, .foot-ticket::after {
+  content: ""; position: absolute; top: 50%;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--forest-deep); transform: translateY(-50%);
+}
+.foot-ticket::before { left: -5px; }
+.foot-ticket::after  { right: -5px; }
+.foot-ticket:hover { background: var(--blush); transform: translateY(-1px); }

@@ -137,6 +137,24 @@ window.RD = {
     ]
   },
 
+  /* ---- ARTIST SOCIAL LINKS ----
+     Keys are the artist name with spaces/punctuation removed, lowercased.
+     If an artist has no entry here, their name simply renders unlinked. */
+  socials: {
+    "ultrafrog":        "https://www.instagram.com/ultrafrogonline/",
+    "sparklecitydisco": "https://www.instagram.com/sparklecitydisco/",
+    "burika":           "https://www.instagram.com/burikavibes/",
+    "maggiewells":      "https://www.instagram.com/maggie_vanderbilt/",
+    "amydarling":       "https://www.instagram.com/amyxdarlingx/",
+    "spicej":           "https://www.instagram.com/spicejok/",
+    "jhoward":          "https://www.instagram.com/jhowardharris/",
+    "jimmyguaro":       "https://www.instagram.com/jim_oshea/",
+    "sessy":            "https://www.instagram.com/tyler.walker.awesome/",
+    "honeysimone":      "https://www.instagram.com/wifimommyy/",
+    "luxvelour":        "https://www.instagram.com/luxvelour_/",
+    "topobandido":      "https://www.instagram.com/topobandido/"
+  },
+
   /* ---- ABOUT PAGE TIMELINE CHIPS ----
      type: "hiatus" = greyed gap chip, "now" = the current-year link chip. */
   timeline: [

@@ -9,10 +9,21 @@
 
   /* ---------- small helpers ---------- */
   function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function socialFor(n){
+    var k = String(n).toLowerCase().replace(/[^a-z0-9]/g, '');
+    return (RD.socials && RD.socials[k]) || '';
+  }
+  function linkName(n){
+    var url = socialFor(n), txt = esc(n);
+    return url ? '<a class="artist-link" href="' + url + '" target="_blank" rel="noopener">' + txt + '</a>' : txt;
+  }
+  function names(str){
+    return String(str).split(' × ').map(linkName).join(' <span class="x">×</span> ');
+  }
   function artist(name){
     var loc = '';
     name = name.replace(/\s*\(([^)]+)\)\s*$/, function(m, c){ loc = ' <span class="loc">(' + esc(c) + ')</span>'; return ''; });
-    return esc(name).split(' × ').join(' <span class="x">×</span> ') + loc;
+    return names(name) + loc;
   }
   function nameOnly(name){ return name.replace(/\s*\([^)]+\)\s*$/, ''); }
   var NUMWORD = {1:"One",2:"Two",3:"Three",4:"Four"};
@@ -38,11 +49,11 @@
     "sponsors.stats":  function(el){ el.innerHTML = statsHTML(RD.sponsors.stats); },
 
     "lineup.teaser": function(el){
-      var names = [];
+      var list = [];
       RD.lineup.nights.forEach(function(n){
-        n.acts.forEach(function(a){ names.push(nameOnly(a)); });
+        n.acts.forEach(function(a){ list.push(nameOnly(a)); });
       });
-      el.innerHTML = names.map(function(s){ return esc(s).split(' × ').join(' <span class="x">×</span> '); }).join(' · ');
+      el.innerHTML = list.map(names).join(' · ');
     },
 
     "lineup.poster": function(el){

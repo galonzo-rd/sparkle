@@ -524,3 +524,19 @@ body.lb-open { overflow: hidden; }
   .lb-btn { font-size: 2.4rem; padding: 0.6rem; }
   .lb-overlay img { max-height: 70vh; }
 }
+
+
+/* --- Artist social links: inherit the surrounding look exactly --- */
+.artist-link{
+  color: inherit;
+  text-decoration: none;
+  font: inherit;
+  letter-spacing: inherit;
+  -webkit-text-fill-color: inherit;
+  background: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+}
+.artist-link:hover,
+.artist-link:focus-visible{ text-decoration: underline; text-underline-offset: .18em; }
+.poster-act .artist-link:hover{ text-decoration: none; }

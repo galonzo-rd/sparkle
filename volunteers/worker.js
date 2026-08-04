@@ -26,9 +26,16 @@ async function handleSubmit(request, env) {
 
   // 1) Formspree first. If this fails, report failure so the form's
   //    own fallback (direct Formspree, then mailto) kicks in.
+  //    Pass the real visitor's browser context through. Without it the
+  //    request looks like a bare server-to-server POST and Formspree's
+  //    spam model flags legitimate signups (which silently suppresses
+  //    their notification emails). See Grace Schlicht, Aug 4 2026.
   const fsRes = await fetch(FORMSPREE, {
     method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    headers: withVisitorContext(request, {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    }),
     body: JSON.stringify(payload),
   });
   if (!fsRes.ok) {
@@ -61,6 +68,31 @@ async function handleSubmit(request, env) {
   }
 
   return json({ ok: true });
+}
+
+// Copy the visitor's browser identity onto the upstream request so the
+// submission looks like what it is: a real person on the form page.
+function withVisitorContext(request, headers) {
+  const h = { ...headers };
+  const inbound = request.headers;
+  const ip =
+    inbound.get("CF-Connecting-IP") ||
+    inbound.get("X-Forwarded-For") ||
+    "";
+  if (ip) {
+    h["X-Forwarded-For"] = ip;
+    h["CF-Connecting-IP"] = ip;
+  }
+  const passthrough = ["User-Agent", "Accept-Language", "Referer", "Origin"];
+  for (const name of passthrough) {
+    const v = inbound.get(name);
+    if (v) h[name] = v;
+  }
+  // The form is same-origin, so Referer/Origin point at the volunteer
+  // page; fall back to it explicitly if the browser withheld them.
+  if (!h.Referer) h.Referer = "https://volunteers.riverdancefest.com/";
+  if (!h.Origin) h.Origin = "https://volunteers.riverdancefest.com";
+  return h;
 }
 
 function confirmationText(first) {

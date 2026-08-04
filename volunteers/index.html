@@ -502,6 +502,10 @@ textarea.input{resize:vertical;min-height:90px;line-height:1.5;}
      when SCRD takes over the form under their own account.
      Set to "" to fall back to the email-app (mailto) flow.     */
   var FORMSPREE_ENDPOINT = "https://formspree.io/f/mqeopepl";
+  /* Same-origin Worker endpoint: forwards to Formspree AND sends
+     the volunteer a confirmation email via Resend. If it errors,
+     we fall back to posting straight to Formspree (no email).   */
+  var SUBMIT_ENDPOINT = "/submit";
   /* ----------------------------------------------------------- */
 
   var DATA = {
@@ -795,8 +799,8 @@ textarea.input{resize:vertical;min-height:90px;line-height:1.5;}
     };
   }
 
-  function submitToFormspree() {
-    return fetch(FORMSPREE_ENDPOINT, {
+  function postJSON(url) {
+    return fetch(url, {
       method: "POST",
       headers: { "Accept": "application/json", "Content-Type": "application/json" },
       body: JSON.stringify(buildPayload())
@@ -806,6 +810,10 @@ textarea.input{resize:vertical;min-height:90px;line-height:1.5;}
         throw new Error(j && j.errors ? j.errors.map(function (x) { return x.message; }).join(", ") : "Submission failed");
       }, function () { throw new Error("Submission failed"); });
     });
+  }
+
+  function submitToFormspree() {
+    return postJSON(SUBMIT_ENDPOINT).catch(function () { return postJSON(FORMSPREE_ENDPOINT); });
   }
 
   function copyResponses() {

@@ -56,6 +56,7 @@ window.RD = {
           "Honey Simone",
           "J.Howard × Jimmy Guaro",
           "Spice J × Notxander",
+          "Travollta",
           "Ultrafrog"
         ]
       },
@@ -152,7 +153,8 @@ window.RD = {
     "sessy":            "https://www.instagram.com/tyler.walker.awesome/",
     "honeysimone":      "https://www.instagram.com/wifimommyy/",
     "luxvelour":        "https://www.instagram.com/luxvelour_/",
-    "topobandido":      "https://www.instagram.com/topobandido/"
+    "topobandido":      "https://www.instagram.com/topobandido/",
+    "travollta":        "https://www.instagram.com/travolltaslaps/"
   },
 
   /* ---- ABOUT PAGE TIMELINE CHIPS ----

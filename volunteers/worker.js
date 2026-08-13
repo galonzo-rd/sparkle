@@ -2,9 +2,20 @@
    Serves the static form + handles POST /submit:
    1) forwards the submission to Formspree (system of record, unchanged pipeline)
    2) sends a confirmation email to the volunteer via Resend
-   A Resend failure never fails the submission. */
+   3) sends a signup notification to the team via Resend
+   Email failures never fail the submission.
+
+   Why step 3 exists: Formspree's spam model flags some legitimate
+   signups arriving via this Worker (server-side POST from a Cloudflare
+   egress IP; header passthrough below does not fool it). Formspree
+   sends NO notification email for spam-flagged submissions, which
+   silently hid 3 real signups Aug 6 to 9, 2026. The Worker sees every
+   submission before Formspree classifies it, so it notifies the team
+   directly. Formspree remains the archive; its spam tab still needs an
+   occasional sweep so records land in the inbox. */
 
 const FORMSPREE = "https://formspree.io/f/mqeopepl";
+const NOTIFY_TO = ["sparklecityriverdance@gmail.com", "fletcherbangs@gmail.com"];
 
 export default {
   async fetch(request, env) {
@@ -26,10 +37,6 @@ async function handleSubmit(request, env) {
 
   // 1) Formspree first. If this fails, report failure so the form's
   //    own fallback (direct Formspree, then mailto) kicks in.
-  //    Pass the real visitor's browser context through. Without it the
-  //    request looks like a bare server-to-server POST and Formspree's
-  //    spam model flags legitimate signups (which silently suppresses
-  //    their notification emails). See Grace Schlicht, Aug 4 2026.
   const fsRes = await fetch(FORMSPREE, {
     method: "POST",
     headers: withVisitorContext(request, {
@@ -42,36 +49,56 @@ async function handleSubmit(request, env) {
     return json({ ok: false, error: "Upstream submission failed" }, 502);
   }
 
-  // 2) Confirmation email. Best effort only.
-  try {
-    const email = String(payload.email || "").trim();
-    const name = String(payload.Name || "").trim();
-    const first = name.split(/\s+/)[0] || "";
-    if (email && env.RESEND_API_KEY) {
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + env.RESEND_API_KEY,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "River Dance Crew <volunteers@riverdancefest.com>",
-          to: [email],
-          reply_to: "sparklecityriverdance@gmail.com",
-          subject: "You're on the crew! River Dance 2026",
-          text: confirmationText(first),
-        }),
-      });
-    }
-  } catch (e) {
-    // swallow: the volunteer's submission already succeeded
+  // 2 + 3) Confirmation to the volunteer, notification to the team.
+  //        Best effort, independent of each other.
+  const email = String(payload.email || "").trim();
+  const name = String(payload.Name || "").trim();
+  const first = name.split(/\s+/)[0] || "";
+
+  const sends = [];
+  if (email && env.RESEND_API_KEY) {
+    sends.push(
+      sendEmail(env, {
+        to: [email],
+        reply_to: "sparklecityriverdance@gmail.com",
+        subject: "You're on the crew! River Dance 2026",
+        text: confirmationText(first),
+      })
+    );
   }
+  if (env.RESEND_API_KEY) {
+    sends.push(
+      sendEmail(env, {
+        to: NOTIFY_TO,
+        reply_to: email || undefined,
+        subject: "New volunteer signup: " + (name || "(no name)"),
+        text: notificationText(payload),
+      })
+    );
+  }
+  await Promise.allSettled(sends);
 
   return json({ ok: true });
 }
 
+function sendEmail(env, fields) {
+  return fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + env.RESEND_API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: "River Dance Crew <volunteers@riverdancefest.com>",
+      ...fields,
+    }),
+  });
+}
+
 // Copy the visitor's browser identity onto the upstream request so the
 // submission looks like what it is: a real person on the form page.
+// Note: this does NOT reliably prevent Formspree spam flagging (the
+// TCP source is still a Cloudflare IP), it just helps at the margin.
 function withVisitorContext(request, headers) {
   const h = { ...headers };
   const inbound = request.headers;
@@ -88,8 +115,6 @@ function withVisitorContext(request, headers) {
     const v = inbound.get(name);
     if (v) h[name] = v;
   }
-  // The form is same-origin, so Referer/Origin point at the volunteer
-  // page; fall back to it explicitly if the browser withheld them.
   if (!h.Referer) h.Referer = "https://volunteers.riverdancefest.com/";
   if (!h.Origin) h.Origin = "https://volunteers.riverdancefest.com";
   return h;
@@ -112,6 +137,21 @@ function confirmationText(first) {
     "The River Dance Crew",
     "@sparklecityriverdance",
   ].join("\n");
+}
+
+function notificationText(payload) {
+  const lines = ["New volunteer signup via volunteers.riverdancefest.com", ""];
+  const summary = payload.Summary || payload.summary;
+  if (summary) {
+    lines.push(String(summary));
+  } else {
+    for (const [k, v] of Object.entries(payload)) {
+      if (v == null || v === "") continue;
+      lines.push(k + ": " + String(v));
+    }
+  }
+  lines.push("", "Sent by the volunteer form Worker. Formspree keeps the archive; if this one is not in the Formspree inbox, check its spam tab and mark it Not Spam.");
+  return lines.join("\n");
 }
 
 function json(body, status) {

@@ -373,7 +373,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
 
 /* ---------- Schedule ---------- */
 .sched { margin-top: 2rem; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
-.sched-day { background: var(--cream); border: 2px solid var(--ink); border-radius: 6px; padding: 1.6rem; }
+.sched-day { background: var(--cream); color: var(--ink); border: 2px solid var(--ink); border-radius: 6px; padding: 1.6rem; }
 .sched-day h3 { color: var(--forest); font-size: 1.5rem; margin-bottom: 1rem; }
 .sched-day table { width: 100%; border-collapse: collapse; }
 .sched-day td { padding: 0.45rem 0; vertical-align: top; border-bottom: 1px dashed rgba(14,15,13,0.25); }

@@ -75,9 +75,13 @@
     "schedule": function(el){
       el.innerHTML = RD.schedule.map(function(d){
         var rows = d.rows.map(function(r){
-          return '<tr><td class="time">'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';
+          var cls = (r[2] === "act") ? ' class="act"' : '';
+          return '<tr'+cls+'><td class="time">'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';
         }).join('');
-        return '<div class="sched-day"><h3>'+esc(d.day)+' · '+esc(d.date)+'</h3><table>'+rows+'</table></div>';
+        var html = '<div class="sched-day"><h3>'+esc(d.day)+' \u00b7 '+esc(d.date)+'</h3>';
+        if (d.note) html += '<p class="sched-note">'+esc(d.note)+'</p>';
+        if (rows) html += '<table>'+rows+'</table>';
+        return html + '</div>';
       }).join('');
     },
 

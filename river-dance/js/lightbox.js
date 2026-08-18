@@ -2,7 +2,8 @@
    Vanilla JS, no dependencies. Navigates within one gallery section at a time. */
 (function () {
   var grids = document.querySelectorAll('.gallery-grid');
-  if (!grids.length) return;
+  var singles = document.querySelectorAll('.zoomable');
+  if (!grids.length && !singles.length) return;
 
   var overlay = null, imgEl, countEl;
   var items = [], idx = 0, touchX = null;
@@ -74,5 +75,12 @@
     imgs.forEach(function (im, i) {
       im.parentElement.addEventListener('click', function () { open(imgs, i); });
     });
+  });
+
+  // standalone zoomable images (e.g. the grounds map) open on their own
+  Array.prototype.forEach.call(singles, function (fig) {
+    var im = fig.querySelector('img');
+    if (!im) return;
+    im.addEventListener('click', function () { open([im], 0); });
   });
 })();

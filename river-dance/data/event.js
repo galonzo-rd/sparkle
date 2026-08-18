@@ -76,24 +76,49 @@ window.RD = {
   },
 
   /* ---- WEEKEND SCHEDULE (Guest Info page) ----
-     Each row is [ time, what's happening ]. */
+     Each row is [ time, what's happening ] with an optional third value:
+     "act" bolds the row (a set or a scheduled activity). Leave it off for
+     logistics like gates, dinner and check-in.
+     "note" prints a big line in place of a table (Sunday). */
   schedule: [
     {
       day: "Friday", date: "Aug 21",
       rows: [
-        ["3:00 PM", "Gates open · check-in begins"],
-        ["3–7 PM",  "Roll in, set up camp, find your people"],
-        ["Sunset",  "First DJ sets of the weekend"],
-        ["Late",    "Disco in the woods, night one 🪩"]
+        ["3:00 PM",        "Gates open"],
+        ["5 \u2013 6 PM",      "Sessy", "act"],
+        ["6 \u2013 7 PM",      "Honey Simone feat. MSTR SSTRR", "act"],
+        ["6 \u2013 8 PM",      "Dinner"],
+        ["7 \u2013 9 PM",      "Field games", "act"],
+        ["7 \u2013 8:30 PM",   "J.Howard \u00d7 Jimmy Guaro", "act"],
+        ["9 \u2013 10:30 PM",  "Spice J \u00d7 Notxander", "act"],
+        ["10:30 \u2013 11 PM", "Travollta", "act"],
+        ["11 PM \u2013 12 AM", "Ultrafrog", "act"],
+        ["12:00 AM",       "Late night movie"]
       ]
     },
     {
       day: "Saturday", date: "Aug 22",
       rows: [
-        ["Morning",   "Slow coffee & easy mornings"],
-        ["9 AM–12 PM", "Shuttle to the river drop-in (the float back takes 2–4 hrs)"],
-        ["Evening",   "Music kicks back up"],
-        ["Late",      "Night two. The big one. ✦"]
+        ["8:00 AM",       "Breakfast opens"],
+        ["9:00 AM",       "Zach Cowie wake-up set into country funk", "act"],
+        ["9:00 AM",       "Check-in opens / float the river"],
+        ["12:00 PM",      "Everybody at the river"],
+        ["4:00 PM",       "Check-in reopens (night-only arrivals)"],
+        ["6 \u2013 8 PM",     "Dinner"],
+        ["6:00 PM",       "Bar opens"],
+        ["6:00 PM",       "Topo Bandido", "act"],
+        ["7:00 PM",       "Lux Velour", "act"],
+        ["8 \u2013 9:30 PM",  "Maggie Wells \u00d7 Amy Darling", "act"],
+        ["9:30 PM",       "Zach Cowie", "act"],
+        ["11 PM \u2013 1 AM", "Sparkle City Disco", "act"],
+        ["1 \u2013 3 AM",     "Burika", "act"]
+      ]
+    },
+    {
+      day: "Sunday", date: "Aug 23",
+      note: "absofuckinglutely nothing.",
+      rows: [
+        ["11:00 AM", "Guests must be departed"]
       ]
     }
   ],

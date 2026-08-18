@@ -382,6 +382,30 @@ h1, h2, h3 { font-family: var(--display); font-weight: 900; line-height: 1.05; l
   font-weight: 600; white-space: nowrap; padding-right: 1rem; color: var(--amber);
 }
 
+.sched-day tr.act td { font-weight: 600; }
+.sched-day tr:last-child td { border-bottom: 0; }
+.sched-note {
+  font-family: var(--display); color: var(--forest);
+  font-size: 1.6rem; line-height: 1.1; text-align: center;
+  padding: 0.6rem 0 1rem;
+}
+
+/* ---------- Grounds map ---------- */
+.map-figure { margin-top: 2rem; }
+.map-figure img {
+  display: block; width: 100%; height: auto; max-width: 900px; margin: 0 auto;
+  border: 2px solid var(--ink); border-radius: 6px;
+  box-shadow: 6px 6px 0 var(--forest); cursor: zoom-in;
+}
+.map-figure figcaption {
+  max-width: 900px; margin: 1.2rem auto 0; text-align: center;
+  font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: 0.85rem; font-weight: 600; color: var(--amber);
+}
+@media (max-width: 700px) {
+  .map-figure img { box-shadow: 4px 4px 0 var(--forest); }
+}
+
 /* ---------- Stamps & badges ---------- */
 .stamp {
   display: inline-block; transform: rotate(-3deg);

@@ -60,6 +60,11 @@
   function open(list, i) {
     if (!overlay) build();
     items = list;
+    // a lone image (the grounds map) has nothing to page through
+    var solo = items.length < 2 ? 'none' : '';
+    overlay.querySelector('.lb-prev').style.display = solo;
+    overlay.querySelector('.lb-next').style.display = solo;
+    countEl.style.display = solo;
     overlay.style.display = 'flex';
     document.body.classList.add('lb-open');
     show(i);

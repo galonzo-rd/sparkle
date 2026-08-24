@@ -23,6 +23,9 @@ export default {
     if (request.method === "POST" && url.pathname === "/submit") {
       return handleSubmit(request, env);
     }
+    if (request.method === "POST" && url.pathname === "/relay-email") {
+      return handleRelay(request, env);
+    }
     return env.ASSETS.fetch(request);
   },
 };
@@ -79,6 +82,49 @@ async function handleSubmit(request, env) {
   await Promise.allSettled(sends);
 
   return json({ ok: true });
+}
+
+/* Minimal internal email relay for sibling SCRD workers (added Aug 24, 2026
+   for the scrd-tickets-sim ticket shop demo). The Resend key lives only on
+   this worker, so the ticket sim POSTs here to send its confirmation emails.
+   Guarded by the RELAY_SECRET shared secret (set on both workers); senders
+   are pinned to @riverdancefest.com. Volunteer form behavior is unchanged. */
+async function handleRelay(request, env) {
+  if (!env.RELAY_SECRET || request.headers.get("X-Relay-Secret") !== env.RELAY_SECRET) {
+    return json({ ok: false, error: "forbidden" }, 403);
+  }
+  if (!env.RESEND_API_KEY) return json({ ok: false, error: "no sender configured" }, 503);
+  let p;
+  try {
+    p = await request.json();
+  } catch (e) {
+    return json({ ok: false, error: "Invalid JSON" }, 400);
+  }
+  const from = String(p.from || "").trim();
+  const to = Array.isArray(p.to) ? p.to.map(String).slice(0, 5) : [];
+  if (!/<[^<>@\s]+@riverdancefest\.com>$|^[^<>@\s]+@riverdancefest\.com$/.test(from)) {
+    return json({ ok: false, error: "from must be @riverdancefest.com" }, 400);
+  }
+  if (to.length === 0 || !p.subject || (!p.text && !p.html)) {
+    return json({ ok: false, error: "to, subject, and text or html required" }, 400);
+  }
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + env.RESEND_API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: from,
+      to: to,
+      reply_to: p.reply_to || undefined,
+      subject: String(p.subject).slice(0, 200),
+      text: p.text || undefined,
+      html: p.html || undefined,
+    }),
+  });
+  const detail = await res.text();
+  return json({ ok: res.ok, status: res.status, detail: res.ok ? undefined : detail.slice(0, 300) }, res.ok ? 200 : 502);
 }
 
 function sendEmail(env, fields) {

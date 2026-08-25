@@ -1,0 +1,65 @@
+/* ============================================================
+   SPARKLE CITY RIVER DANCE — THEME (2026)
+   ============================================================
+   This file is the YEAR SKIN. Everything that changes when David
+   hands down a new look for a new season lives here: colors,
+   fonts, and the derived color tokens. Structure and layout live
+   in base.css and should not need to change year to year.
+
+   To roll to a new year:
+   1. Copy this file to theme-2026.css as an archive.
+   2. Edit the tokens below (and swap font files / critter SVGs
+      in /fonts and /img/icons as needed).
+   3. That's it. The HTML links css/theme.css by a stable name,
+      so no page edits are required.
+
+   Pair with data/event.js (the year's FACTS) — together they are
+   the complete annual changeover.
+   ============================================================ */
+
+/* Per Fletcher (June 7, 2026): ALWAYS use the italic Cooper. The 'Cooper Black'
+   family name intentionally loads the Italic TTF so every reference (CSS vars
+   and inline SVG font-family attrs) renders italic. */
+@font-face {
+  font-family: 'Cooper Black';
+  src: url('../fonts/CooperBlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cooper Black Italic';
+  src: url('../fonts/CooperBlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Palette (SCRD 2026 brand guidelines) ---- */
+  --forest: #2B4A2E;
+  --forest-deep: #1F3722;
+  --blush: #F4B9A8;
+  --lime: #D8EF5C;
+  --ink: #0E0F0D;
+  --cream: #F5EEDC;
+  --river: #9EC9E3;
+  --purple: #6B4FC9;
+  --amber: #C75E2C;
+  --gold: #D4A93A;
+
+  /* ---- RGB triplets (keep in sync with the hex above) ----
+     Used by base.css wherever a translucent tint of a brand color
+     is needed: rgba(var(--lime-rgb), 0.10) etc. */
+  --forest-rgb: 43, 74, 46;
+  --forest-deep-rgb: 31, 55, 34;
+  --blush-rgb: 244, 185, 168;
+  --lime-rgb: 216, 239, 92;
+  --ink-rgb: 14, 15, 13;
+  --cream-rgb: 245, 238, 220;
+
+  /* ---- Type ---- */
+  --display: 'Cooper Black Italic', 'Cooper Black', serif;
+  --display-i: 'Cooper Black Italic', 'Cooper Black', serif;
+  --eyebrow: 'Barlow Condensed', 'Oswald', sans-serif;
+  --body: 'Outfit', 'Work Sans', 'Inter', sans-serif;
+}

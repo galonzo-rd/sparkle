@@ -6,3 +6,6 @@
 
 /sponsor-2026-402d2c.html
   X-Robots-Tag: noindex
+
+/fonts/*
+  Access-Control-Allow-Origin: *

@@ -26,11 +26,8 @@
     return names(name) + loc;
   }
   function nameOnly(name){ return name.replace(/\s*\([^)]+\)\s*$/, ''); }
-  var NUMWORD = {1:"One",2:"Two",3:"Three",4:"Four"};
 
-  var datesVenueLine = E.datesDisplay + " · " + E.venue + " · " + E.river;
-  var legalLine      = "© " + E.year + " " + E.siteName + " · " + E.datesShort + " · " + E.venue + ", " + E.city;
-  var contactDates   = E.datesDisplay + ". " + (NUMWORD[E.nights] || E.nights) + " nights. Don't sleep on it.";
+  var legalLine = "© " + E.year + " " + E.siteName + " · " + E.venue + ", " + E.city;
 
   function statsHTML(arr){
     return arr.map(function(s){
@@ -41,9 +38,8 @@
   /* ---------- renderers keyed by data-rd ---------- */
   var R = {
     "hero.eyebrow":    function(el){ el.textContent = E.heroEyebrow; },
-    "hero.datesVenue": function(el){ el.innerHTML = esc(E.datesDisplay) + " · " + esc(E.venue) + " · " + esc(E.river); },
+    "hero.datesVenue": function(el){ el.innerHTML = esc(E.venue) + " · " + esc(E.river); },
     "hero.tagline":    function(el){ el.textContent = E.tagline; },
-    "contact.dates":   function(el){ el.textContent = contactDates; },
 
     "home.stats":      function(el){ el.innerHTML = statsHTML(RD.homeStats); },
     "sponsors.stats":  function(el){ el.innerHTML = statsHTML(RD.sponsors.stats); },
@@ -78,7 +74,7 @@
           var cls = (r[2] === "act") ? ' class="act"' : '';
           return '<tr'+cls+'><td class="time">'+esc(r[0])+'</td><td>'+esc(r[1])+'</td></tr>';
         }).join('');
-        var html = '<div class="sched-day"><h3>'+esc(d.day)+' \u00b7 '+esc(d.date)+'</h3>';
+        var html = '<div class="sched-day"><h3>'+esc(d.day)+' · '+esc(d.date)+'</h3>';
         if (d.note) html += '<p class="sched-note">'+esc(d.note)+'</p>';
         if (rows) html += '<table>'+rows+'</table>';
         return html + '</div>';
@@ -98,8 +94,11 @@
 
     "about.timeline": function(el){
       el.innerHTML = RD.timeline.map(function(c){
+        // the current-year chip links to tickets only while they're on sale
         if (c.type === "now")
-          return '<a class="year-chip now" href="'+esc(E.ticketsUrl)+'" target="_blank" rel="noopener">'+esc(c.label)+'</a>';
+          return E.ticketsUrl
+            ? '<a class="year-chip now" href="'+esc(E.ticketsUrl)+'" target="_blank" rel="noopener">'+esc(c.label)+'</a>'
+            : '<span class="year-chip now">'+esc(c.label)+'</span>';
         if (c.type === "hiatus")
           return '<span class="year-chip hiatus">'+esc(c.label)+'</span>';
         return '<span class="year-chip">'+esc(c.label)+'</span>';
@@ -116,15 +115,14 @@
     });
 
     // global swaps (no per-element tagging needed)
-    document.querySelectorAll('a[href*="prekindle.com/event"]').forEach(function(a){ a.href = E.ticketsUrl; });
     document.querySelectorAll('a[href*="youtu.be"], a[href*="youtube.com/watch"]').forEach(function(a){ a.href = "https://youtu.be/" + E.recapVideoId; });
     document.querySelectorAll('iframe[src*="youtube.com/embed"]').forEach(function(f){ f.src = "https://www.youtube.com/embed/" + E.recapVideoId; });
     document.querySelectorAll('.legal').forEach(function(el){ el.textContent = legalLine; });
 
     // page title
     var dt = document.body.getAttribute('data-title');
-    document.title = dt ? (dt + " · " + E.siteName + " " + E.year)
-                        : (E.siteName + " · " + E.datesShort + " · " + E.river);
+    document.title = dt ? (dt + " · " + E.siteName)
+                        : (E.siteName + " · " + E.river);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", run);

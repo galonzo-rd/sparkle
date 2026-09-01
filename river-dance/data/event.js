@@ -27,9 +27,11 @@ window.RD = {
     river:        "Buffalo River, TN",
 
     tagline:      "Ten Years. 2 Nights. Super Nature.",
-    heroEyebrow:  "✦ 10th Anniversary ✦ Two Nights For The First Time Ever ✦",
+    heroEyebrow:  "✦ Ten Years On The Buffalo River ✦",
 
-    ticketsUrl:   "https://www.prekindle.com/event/18553-sparkle-city-river-dance-hurricane-mills",
+    // Empty means tickets are NOT on sale: the site shows no ticket links
+    // anywhere. Paste next year's Prekindle URL here to switch it back on.
+    ticketsUrl:   "",
     recapVideoId: "Ug17W4f0KGw"           // the YouTube id of the recap film
   },
 
@@ -85,14 +87,14 @@ window.RD = {
       day: "Friday", date: "Aug 21",
       rows: [
         ["3:00 PM",        "Gates open"],
-        ["5 \u2013 6 PM",      "Sessy", "act"],
-        ["6 \u2013 7 PM",      "Honey Simone feat. MSTR SSTRR", "act"],
-        ["6 \u2013 8 PM",      "Dinner"],
-        ["7 \u2013 9 PM",      "Field games", "act"],
-        ["7 \u2013 8:30 PM",   "J.Howard \u00d7 Jimmy Guaro", "act"],
-        ["9 \u2013 10:30 PM",  "Spice J \u00d7 Notxander", "act"],
-        ["10:30 \u2013 11 PM", "Travollta", "act"],
-        ["11 PM \u2013 12 AM", "Ultrafrog", "act"],
+        ["5 – 6 PM",      "Sessy", "act"],
+        ["6 – 7 PM",      "Honey Simone feat. MSTR SSTRR", "act"],
+        ["6 – 8 PM",      "Dinner"],
+        ["7 – 9 PM",      "Field games", "act"],
+        ["7 – 8:30 PM",   "J.Howard × Jimmy Guaro", "act"],
+        ["9 – 10:30 PM",  "Spice J × Notxander", "act"],
+        ["10:30 – 11 PM", "Travollta", "act"],
+        ["11 PM – 12 AM", "Ultrafrog", "act"],
         ["12:00 AM",       "Late night movie"]
       ]
     },
@@ -104,14 +106,14 @@ window.RD = {
         ["9:00 AM",       "Check-in opens / float the river"],
         ["12:00 PM",      "Everybody at the river"],
         ["4:00 PM",       "Check-in reopens (night-only arrivals)"],
-        ["6 \u2013 8 PM",     "Dinner"],
+        ["6 – 8 PM",     "Dinner"],
         ["6:00 PM",       "Bar opens"],
         ["6:00 PM",       "Topo Bandido", "act"],
         ["7:00 PM",       "Lux Velour", "act"],
-        ["8 \u2013 9:30 PM",  "Maggie Wells \u00d7 Amy Darling", "act"],
+        ["8 – 9:30 PM",  "Maggie Wells × Amy Darling", "act"],
         ["9:30 PM",       "Zach Cowie", "act"],
-        ["11 PM \u2013 1 AM", "Sparkle City Disco", "act"],
-        ["1 \u2013 3 AM",     "Burika", "act"]
+        ["11 PM – 1 AM", "Sparkle City Disco", "act"],
+        ["1 – 3 AM",     "Burika", "act"]
       ]
     },
     {
@@ -183,7 +185,8 @@ window.RD = {
   },
 
   /* ---- ABOUT PAGE TIMELINE CHIPS ----
-     type: "hiatus" = greyed gap chip, "now" = the current-year link chip. */
+     type: "hiatus" = greyed gap chip, "now" = the current-year chip
+     (it links to tickets only when ticketsUrl above is set). */
   timeline: [
     { label: "2016" },
     { label: "2017" },

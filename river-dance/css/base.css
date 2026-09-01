@@ -566,3 +566,57 @@ body.lb-open { overflow: hidden; }
 .foot-ticket::before { left: -5px; }
 .foot-ticket::after  { right: -5px; }
 .foot-ticket:hover { background: var(--blush); transform: translateY(-1px); }
+
+/* ---------- Gallery year switcher ---------- */
+/* Same chip DNA as the About-page timeline, made clickable. Sits under the
+   sticky nav; --navh is measured by js/gallery-years.js. */
+[hidden] { display: none !important; }
+
+.gyearbar {
+  position: sticky; top: var(--navh, 81px); z-index: 40;
+  background: var(--forest-deep);
+  border-bottom: 3px solid var(--ink);
+  padding: 0.75rem 1rem;
+}
+.gyears {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: center;
+}
+.gyear {
+  font-family: var(--display); font-size: 1.05rem; line-height: 1.2;
+  background: var(--forest); color: var(--cream);
+  border: 2px solid var(--ink); border-radius: 4px;
+  padding: 0.42rem 1rem; cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.gyear:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0 var(--ink); }
+.gyear.on {
+  background: var(--lime); color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.gyear.on:hover { transform: none; }
+.gyear:focus-visible { outline: 3px solid var(--blush); outline-offset: 2px; }
+.gyear-all {
+  background: transparent; color: var(--lime);
+  border-style: dashed; border-color: var(--lime);
+}
+.gyear-all.on { background: var(--lime); color: var(--ink); border-style: solid; border-color: var(--ink); }
+
+@media (max-width: 640px) {
+  .gyearbar { padding: 0.6rem 0.7rem; }
+  .gyear { font-size: 0.95rem; padding: 0.36rem 0.8rem; }
+}
+
+/* photo credit under a season's grid */
+.photo-credit {
+  margin-top: 1.6rem; text-align: center;
+  font-family: var(--eyebrow); text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 0.8rem; opacity: 0.75;
+}
+.photo-credit a { color: var(--lime); text-decoration: none; }
+.photo-credit a:hover { color: var(--blush); }
+.section.light .photo-credit a { color: var(--amber); }
+.section.light .photo-credit a:hover { color: var(--forest); }
+
+/* anchor jumps land below the sticky nav + year bar */
+.section[data-gyear] { scroll-margin-top: calc(var(--navh, 81px) + 62px); }

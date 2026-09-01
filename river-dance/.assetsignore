@@ -2,9 +2,9 @@
 wrangler.jsonc
 .assetsignore
 
-# 2026 sponsor materials — pulled from the public site Sept 1, 2026.
-# Kept in the (private) repo for reference but NOT uploaded as assets,
-# so both 404 on the live site. The deck PDF carried sponsor pricing,
-# household income and revenue figures and was publicly fetchable.
+# 2026 sponsor materials — DELETED from the repo Sept 1, 2026.
+# The deck PDF carried sponsor pricing, household income and revenue
+# figures and was publicly fetchable at a guessable URL. These paths stay
+# listed so nothing can accidentally republish them at the same URLs.
 sponsor-2026-402d2c.html
 files/SCRD_2026_Sponsor_Deck.pdf
